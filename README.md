@@ -39,6 +39,9 @@ pygentree -d
 # Ignore hidden files and directories, e.g. .git, .env, etc.
 pygentree --ignore-hidden
 
+# Exclude specific files or directories (comma-separated)
+pygentree -e "node_modules,venv,dist"
+
 # Save output to file
 pygentree -o tree.txt
 
@@ -56,6 +59,7 @@ pygentree -h
 - Multiple sorting options
 - Option to show only directories
 - Option to ignore hidden files and directories
+- Exclude specific files and directories
 - Save output to file
 - Handle permission errors gracefully
 - Cross-platform compatibility
