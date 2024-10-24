@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pygentree"
-version = "1.0.1"
+version = "1.0.3"
 description = "A Python package to generate ASCII tree representation of directory structures"
 readme = "README.md"
 authors = [{ name = "Taeef Najib", email = "taeefnajib@gmail.com" }]
@@ -19,7 +19,7 @@ dependencies = []
 requires-python = ">=3.6"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/pygentree"
+Homepage = "https://github.com/taeefnajib/pygentree"
 
 [project.scripts]
 pygentree = "pygentree.__main__:main"

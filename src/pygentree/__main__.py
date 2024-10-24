@@ -1,5 +1,6 @@
 import argparse
 import sys
+from typing import List
 from .tree_generator import DirectoryTreeGenerator, __version__
 
 def parse_exclude_list(exclude_str: str) -> List[str]:
