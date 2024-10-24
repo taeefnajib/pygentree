@@ -55,6 +55,7 @@ pygentree -h
 - Customize maximum depth level
 - Multiple sorting options
 - Option to show only directories
+- Option to ignore hidden files and directories
 - Save output to file
 - Handle permission errors gracefully
 - Cross-platform compatibility
