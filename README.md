@@ -1,6 +1,14 @@
 # PyGenTree
 
+[![PyPI version](https://img.shields.io/pypi/v/pygentree.svg?style=for-the-badge)](https://pypi.org/project/pygentree/)
+[![License](https://img.shields.io/pypi/l/pygentree.svg?style=for-the-badge)](https://github.com/taeefnajib/pygentree/blob/main/LICENSE)
+[![Python versions](https://img.shields.io/pypi/pyversions/pygentree.svg?style=for-the-badge)](https://pypi.org/project/pygentree/)
+
 A Python package to generate ASCII tree representation of directory structures.
+
+## Requirements
+
+- Python 3.6 or higher
 
 ## Installation
 
@@ -50,6 +58,16 @@ pygentree -h
 - Save output to file
 - Handle permission errors gracefully
 - Cross-platform compatibility
+
+## Supported Python Versions
+
+- Python 3.6
+- Python 3.7
+- Python 3.8
+- Python 3.9
+- Python 3.10
+- Python 3.11
+- Python 3.12
 
 ## License
 
