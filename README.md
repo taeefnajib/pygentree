@@ -28,6 +28,9 @@ pygentree -s standard  # default: folders first, then files
 # Show only directories
 pygentree -d
 
+# Ignore hidden files and directories, e.g. .git, .env, etc.
+pygentree --ignore-hidden
+
 # Save output to file
 pygentree -o tree.txt
 
