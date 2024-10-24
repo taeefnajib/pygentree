@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pygentree"
+version = "1.0.0"
+description = "A Python package to generate ASCII tree representation of directory structures"
+readme = "README.md"
+authors = [{ name = "Taeef Najib", email = "taeefnajib@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["directory", "tree", "filesystem", "ascii"]
+dependencies = []
+requires-python = ">=3.6"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pygentree"
+
+[project.scripts]
+pygentree = "pygentree.__main__:main"
