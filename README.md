@@ -6,7 +6,7 @@
 
 A Python package to generate ASCII tree representation of directory structures.
 
-[Screenshot](https://postimg.cc/0bDCLW8g)
+<img src="https://i.postimg.cc/HsPP8RRL/Screenshot-from-2024-10-24-23-45-17.png"/>
 
 ## Requirements
 
