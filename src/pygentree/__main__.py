@@ -14,6 +14,7 @@ Examples:
   pygentree -s desc           # Sort in descending order
   pygentree -d                # Show only directories
   pygentree -o tree.txt       # Save output to file
+  pygentree --ignore-hidden   # Ignore hidden files and directories
         """
     )
     
@@ -28,6 +29,8 @@ Examples:
                        help='Show only directories, ignore files')
     parser.add_argument('-o', '--output',
                        help='Output file path to save the tree')
+    parser.add_argument('--ignore-hidden', action='store_true',
+                       help='Ignore hidden files and directories')
     parser.add_argument('-v', '--version', action='version',
                        version=f'PyGenTree v{__version__}')
 
@@ -38,7 +41,8 @@ Examples:
             args.path,
             max_level=args.level,
             sort_order=args.sort,
-            dirs_only=args.dirs_only
+            dirs_only=args.dirs_only,
+            ignore_hidden=args.ignore_hidden
         )
         
         if args.output:
