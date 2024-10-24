@@ -2,6 +2,12 @@ import argparse
 import sys
 from .tree_generator import DirectoryTreeGenerator, __version__
 
+def parse_exclude_list(exclude_str: str) -> List[str]:
+    """Parse comma-separated exclude list."""
+    if not exclude_str:
+        return []
+    return [item.strip() for item in exclude_str.split(',') if item.strip()]
+
 def main():
     parser = argparse.ArgumentParser(
         description='Generate ASCII tree representation of directory structure',
@@ -15,6 +21,7 @@ Examples:
   pygentree -d                # Show only directories
   pygentree -o tree.txt       # Save output to file
   pygentree --ignore-hidden   # Ignore hidden files and directories
+  pygentree -e "node_modules,venv,dist"  # Exclude specific files/directories
         """
     )
     
@@ -31,18 +38,23 @@ Examples:
                        help='Output file path to save the tree')
     parser.add_argument('--ignore-hidden', action='store_true',
                        help='Ignore hidden files and directories')
+    parser.add_argument('-e', '--exclude',
+                       help='Comma-separated list of files/directories to exclude')
     parser.add_argument('-v', '--version', action='version',
                        version=f'PyGenTree v{__version__}')
 
     args = parser.parse_args()
 
     try:
+        exclude_list = parse_exclude_list(args.exclude)
+        
         generator = DirectoryTreeGenerator(
             args.path,
             max_level=args.level,
             sort_order=args.sort,
             dirs_only=args.dirs_only,
-            ignore_hidden=args.ignore_hidden
+            ignore_hidden=args.ignore_hidden,
+            exclude=exclude_list
         )
         
         if args.output:

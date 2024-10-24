@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Set
 from datetime import datetime
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 class DirectoryTreeGenerator:
     """Generate ASCII tree representation of directory structure."""
@@ -13,7 +13,8 @@ class DirectoryTreeGenerator:
                  max_level: Optional[int] = None, 
                  sort_order: str = 'standard',
                  dirs_only: bool = False,
-                 ignore_hidden: bool = False):
+                 ignore_hidden: bool = False,
+                 exclude: Optional[List[str]] = None):
         """
         Initialize the tree generator.
         
@@ -23,29 +24,37 @@ class DirectoryTreeGenerator:
             sort_order: Sorting order ('asc', 'desc', or 'standard')
             dirs_only: If True, only show directories
             ignore_hidden: If True, ignore hidden files and directories
+            exclude: List of file/directory names to exclude
         """
         self.root_dir = Path(root_dir)
         self.max_level = max_level
         self.sort_order = sort_order
         self.dirs_only = dirs_only
         self.ignore_hidden = ignore_hidden
+        self.exclude = set(exclude or [])
         self.tree_str = []
 
     def is_hidden(self, path: Path) -> bool:
         """Check if a file or directory is hidden."""
         return path.name.startswith('.')
 
+    def should_exclude(self, path: Path) -> bool:
+        """Check if a file or directory should be excluded."""
+        return path.name in self.exclude
+
     def filter_items(self, items: List[Path]) -> List[Path]:
         """Filter items based on settings."""
         filtered_items = items
         
-        # Filter hidden files/directories if requested
-        if self.ignore_hidden:
-            filtered_items = [item for item in filtered_items if not self.is_hidden(item)]
-            
-        # Filter non-directories if dirs_only is True
-        if self.dirs_only:
-            filtered_items = [item for item in filtered_items if item.is_dir()]
+        # Apply all filters
+        filtered_items = [
+            item for item in filtered_items 
+            if not (
+                (self.ignore_hidden and self.is_hidden(item)) or
+                self.should_exclude(item) or
+                (self.dirs_only and not item.is_dir())
+            )
+        ]
             
         return filtered_items
 
@@ -117,6 +126,7 @@ class DirectoryTreeGenerator:
             f.write(f"Options: depth={self.max_level or 'unlimited'}, ")
             f.write(f"sort={self.sort_order}, ")
             f.write(f"dirs_only={self.dirs_only}, ")
-            f.write(f"ignore_hidden={self.ignore_hidden}\n")
+            f.write(f"ignore_hidden={self.ignore_hidden}, ")
+            f.write(f"excluded={list(self.exclude) or 'none'}\n")
             f.write("-" * 50 + "\n\n")
             f.write(tree_content)
