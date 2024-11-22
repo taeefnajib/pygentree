@@ -44,8 +44,12 @@ pygentree --ignore-hidden
 # Exclude specific files or directories (comma-separated)
 pygentree -e "node_modules,venv,dist"
 
-# Save output to file
+# Save output to file (default .txt)
 pygentree -o tree.txt
+
+# Save output in different formats
+pygentree -o tree.rst --format rst  # Save as reStructuredText
+pygentree -o tree.txt --format txt  # Save as plain text (default)
 
 # Show version
 pygentree -v
@@ -62,7 +66,7 @@ pygentree -h
 - Option to show only directories
 - Option to ignore hidden files and directories
 - Exclude specific files and directories
-- Save output to file
+- Save output to file in multiple formats (txt, rst)
 - Handle permission errors gracefully
 - Cross-platform compatibility
 
