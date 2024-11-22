@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List, Optional, Set
 from datetime import datetime
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 class DirectoryTreeGenerator:
     """Generate ASCII tree representation of directory structure."""
